@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: redis-react-frontend
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+          env:
+            - name: API_URL
+              value: "http://node-redis:8080"

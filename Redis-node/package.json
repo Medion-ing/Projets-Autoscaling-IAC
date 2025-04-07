@@ -1,0 +1,24 @@
+{
+  "name": "redis-docker",
+  "version": "1.0.5",
+  "main": "index.js",
+  "type": "module",
+  "author": "arthur.escriou <arthur.escriou@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node main",
+    "test": "yarn node --experimental-vm-modules $(yarn bin jest)"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "express-prometheus-middleware": "^1.2.0",
+    "prom-client": "^15.1.0",
+    "redis": "^4.1.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

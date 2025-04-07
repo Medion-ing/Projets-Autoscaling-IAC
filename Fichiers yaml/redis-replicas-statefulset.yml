@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis-replicas
+spec:
+  serviceName: redis-replicas
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis-replica
+  template:
+    metadata:
+      labels:
+        app: redis-replica
+    spec:
+      containers:
+        - name: redis
+          image: redis:7.2
+          ports:
+            - containerPort: 6379
+          command: ["redis-server", "--replicaof", "redis.default.svc.cluster.local", "6379"]
+          resources:
+            requests:
+              cpu: "50m"     # Demande 100 milliCPU
+              memory: "128Mi" # Demande 128Mi de mémoire
+            limits:
+              cpu: "100m"     # Limite à 500 milliCPU
+              memory: "512Mi" # Limite à 512Mi de mémoire
